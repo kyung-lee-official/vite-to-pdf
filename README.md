@@ -62,6 +62,29 @@ MDX documents can use the components registered in `src/lib/mdx-components.tsx`:
 `} />
 ```
 
+### Timeline (SVG, no image asset)
+
+```mdx
+<TimelineChart
+  title="Delivery timeline"
+  subtitle="Plan vs actual"
+  start="2026-11-11"
+  end="2026-11-26"
+  rows={[
+    { label: "Plan", bars: [{ start: "2026-11-11", end: "2026-11-16", label: "Build" }] },
+    { label: "Actual", bars: [{ start: "2026-11-11", end: "2026-11-23", label: "Build and deploy" }] },
+  ]}
+  milestones={[
+    { date: "2026-11-11", label: "Kickoff" },
+    { date: "2026-11-26", label: "Sign-off", color: "#16a34a" },
+  ]}
+  delay={{ start: "2026-11-17", end: "2026-11-26", label: "Delay" }}
+  caption="Figure: plan vs actual."
+/>
+```
+
+Use `rows` for lanes, `milestones` for date markers, `delay` for the shaded slip range, and `legend` for swatches. The chart is inline SVG, so there is no image asset to keep in sync.
+
 ### Bar chart (Recharts)
 
 ```mdx

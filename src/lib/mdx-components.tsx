@@ -1,5 +1,6 @@
 import type { ComponentType, ImgHTMLAttributes } from "react";
 import { BarChart } from "../components/charts/BarChart";
+import { TimelineChart } from "../components/charts/TimelineChart";
 import { Callout } from "../components/Callout";
 import { DocImage } from "../components/DocImage";
 import { Mermaid } from "../components/Mermaid";
@@ -14,6 +15,7 @@ export function createMdxComponents(
     ),
     Mermaid,
     BarChart,
+    TimelineChart,
     Callout,
   };
 }
