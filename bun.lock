@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "md-to-pdf",
+      "name": "vite-to-pdf",
       "dependencies": {
         "gray-matter": "^4.0.3",
         "katex": "^0.19.1",

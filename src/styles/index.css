@@ -2,6 +2,16 @@
 @plugin "@tailwindcss/typography";
 @source "../../doc";
 
+/* Links, used for domains in report text: light blue with a dashed underline. */
+.report-prose a {
+  color: #3b82f6;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+
 @theme {
   --font-sans:
     "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial,
@@ -50,6 +60,12 @@ body {
   display: table-header-group;
 }
 
+/* Tight lists; reports use bullets for dense inventories. */
+.report-prose li {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
 .report-prose img {
   max-width: 100%;
   height: auto;
@@ -69,6 +85,14 @@ body {
 .report-prose blockquote {
   font-style: normal;
   quotes: none;
+}
+
+/* Emphasis for report statements that need to stand out in print. */
+.report-prose mark {
+  background: #fff1c2;
+  color: inherit;
+  padding: 0 0.15em;
+  border-radius: 2px;
 }
 
 .report-prose blockquote p:first-of-type::before,

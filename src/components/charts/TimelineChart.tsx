@@ -42,7 +42,8 @@ export type TimelineLegendItem = {
 };
 
 export type TimelineChartProps = {
-  title: string;
+  /** Optional heading inside the SVG; the figure is captioned instead when omitted. */
+  title?: string;
   subtitle?: string;
   /** First day of the axis, in YYYY-MM-DD. */
   start: string;
@@ -89,7 +90,13 @@ export function TimelineChart({
   const x = (offset: number) =>
     CHART_LEFT + (Math.max(0, Math.min(totalDays, offset)) / totalDays) * CHART_WIDTH;
 
-  const rowTop = 130;
+  const hasHeader = Boolean(title) || Boolean(subtitle);
+  const headerHeight = hasHeader ? (subtitle ? 72 : 52) : 12;
+  const tickY = headerHeight + 6;
+  const axisY = headerHeight + 16;
+  const bandTop = headerHeight + 32;
+  const bandLabelY = headerHeight + 48;
+  const rowTop = headerHeight + 58;
   const rowGap = 50;
   const barHeight = 32;
   const milestoneY = rowTop + rows.length * rowGap + 15;
@@ -125,26 +132,28 @@ export function TimelineChart({
         viewBox={`0 0 ${VIEW_WIDTH} ${height}`}
         width={VIEW_WIDTH}
       >
-        <title id={titleId}>{title}</title>
+        <title id={titleId}>{title ?? caption ?? "Timeline"}</title>
         {subtitle ? <desc>{subtitle}</desc> : null}
 
-        <text
-          fill="#1f2328"
-          fontFamily={FONT_FAMILY}
-          fontSize={24}
-          fontWeight={700}
-          x={24}
-          y={36}
-        >
-          {title}
-        </text>
+        {title ? (
+          <text
+            fill="#1f2328"
+            fontFamily={FONT_FAMILY}
+            fontSize={24}
+            fontWeight={700}
+            x={24}
+            y={36}
+          >
+            {title}
+          </text>
+        ) : null}
         {subtitle ? (
           <text
             fill="#57606a"
             fontFamily={FONT_FAMILY}
             fontSize={14}
             x={24}
-            y={56}
+            y={title ? 56 : 40}
           >
             {subtitle}
           </text>
@@ -161,7 +170,7 @@ export function TimelineChart({
               strokeWidth={1}
               x1={cx}
               x2={cx}
-              y1={88}
+              y1={axisY}
               y2={chartBottom}
             />
           );
@@ -172,8 +181,8 @@ export function TimelineChart({
           strokeWidth={1}
           x1={CHART_LEFT}
           x2={CHART_RIGHT}
-          y1={88}
-          y2={88}
+          y1={axisY}
+          y2={axisY}
         />
 
         {tickDays.map((day) => {
@@ -187,7 +196,7 @@ export function TimelineChart({
               fontSize={13}
               textAnchor={last ? "end" : "middle"}
               x={last ? cx - 2 : cx}
-              y={78}
+              y={tickY}
             >
               {dateLabel(startMs + day * DAY_MS)}
             </text>
@@ -198,13 +207,13 @@ export function TimelineChart({
           <>
             <rect
               fill="#fff1f2"
-              height={chartBottom - 104}
+              height={chartBottom - bandTop}
               stroke="#fecdd3"
               strokeDasharray="4 4"
               strokeWidth={1}
               width={x(delayEnd) - x(delayStart)}
               x={x(delayStart)}
-              y={104}
+              y={bandTop}
             />
             <text
               fill="#b91c1c"
@@ -212,7 +221,7 @@ export function TimelineChart({
               fontSize={14}
               fontWeight={600}
               x={x(delayStart) + 8}
-              y={120}
+              y={bandLabelY}
             >
               {delay.label}
             </text>
@@ -233,7 +242,7 @@ export function TimelineChart({
               strokeWidth={1}
               x1={cx}
               x2={cx}
-              y1={108}
+              y1={bandTop + 4}
               y2={chartBottom}
             />
           );

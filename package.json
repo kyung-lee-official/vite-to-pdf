@@ -1,5 +1,5 @@
 {
-  "name": "md-to-pdf",
+  "name": "vite-to-pdf",
   "version": "2.0.0",
   "description": "Markdown/MDX report workspace with Vite, React, Tailwind and Playwright PDF export",
   "private": true,

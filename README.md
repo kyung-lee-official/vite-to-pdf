@@ -1,4 +1,4 @@
-# md-to-pdf
+# vite-to-pdf
 
 A small report workspace: Markdown and MDX in `doc/`, rendered with Vite + React + Tailwind, previewed in the browser, and exported to PDF with Playwright.
 
@@ -44,6 +44,8 @@ pdf:
 - `slug` overrides the URL only; the PDF keeps the source path under `build/`.
 - `pdf` is merged into Playwright's `page.pdf()` options for that document.
 - Markdown features: GFM tables, task lists, images, KaTeX (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
+- `<mark>…</mark>` renders as an amber highlight (styled in `src/styles/index.css`) and is kept in print.
+- Domains are written as links (`[docs.chitubox.com](https://docs.chitubox.com)`); links print light blue with a dashed underline.
 
 Images referenced with a relative path are resolved against the document's folder, so they keep working in dev and in the build. Keep assets next to the document or under `public/` for absolute `/...` paths.
 
@@ -83,7 +85,7 @@ MDX documents can use the components registered in `src/lib/mdx-components.tsx`:
 />
 ```
 
-Use `rows` for lanes, `milestones` for date markers, `delay` for the shaded slip range, and `legend` for swatches. The chart is inline SVG, so there is no image asset to keep in sync.
+Use `rows` for lanes, `milestones` for date markers, `delay` for the shaded slip range, and `legend` for swatches. The chart is inline SVG, so there is no image asset to keep in sync. `title` and `subtitle` are optional: omit them to let `caption` label the figure, which then also becomes the accessible name.
 
 ### Bar chart (Recharts)
 
