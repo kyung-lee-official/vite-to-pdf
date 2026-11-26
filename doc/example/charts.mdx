@@ -1,0 +1,57 @@
+---
+title: Charts
+date: 2026-11-26
+version: v1.0
+---
+
+# Charts
+
+This page is a tracked example of the report components. Add content under `doc/` to publish it locally, or run `bun run pdf` to export it.
+
+## Mermaid
+
+<Mermaid chart={`gantt
+    title Delivery plan
+    dateFormat YYYY-MM-DD
+    axisFormat %m-%d
+    section Plan
+    Build          :done, plan-build, 2026-11-11, 2026-11-16
+    Acceptance     :done, plan-accept, 2026-11-17, 2026-11-26
+    section Actual
+    Build and deploy :active, actual-build, 2026-11-11, 2026-11-23
+    Rework and v2    :active, actual-rework, 2026-11-24, 2026-11-25
+    Sign-off         :milestone, actual-done, 2026-11-26, 0d
+`} />
+
+## Bar chart
+
+<BarChart
+  title="Weekly throughput"
+  caption="Numbers are illustrative."
+  xKey="week"
+  yUnit=" pcs"
+  series={[
+    { key: "planned", name: "Planned", color: "#bfdbfe" },
+    { key: "done", name: "Done", color: "#2563eb" },
+  ]}
+  data={[
+    { week: "W1", planned: 15, done: 12 },
+    { week: "W2", planned: 18, done: 18 },
+    { week: "W3", planned: 14, done: 9 },
+    { week: "W4", planned: 20, done: 17 },
+  ]}
+/>
+
+## Callout
+
+<Callout type="tip" title="Composable">
+  MDX can mix Markdown prose with React components. Charts, diagrams and callouts stay reusable.
+</Callout>
+
+## Math
+
+When $a \ne 0$, the quadratic formula is:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$

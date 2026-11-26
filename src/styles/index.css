@@ -1,0 +1,116 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../../doc";
+
+@theme {
+  --font-sans:
+    "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial,
+    sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  @apply bg-neutral-100 text-neutral-900 antialiased;
+}
+
+.report-prose {
+  /* prose utilities are applied on the element; this class carries print and table overrides. */
+}
+
+.report-prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report-prose th,
+.report-prose td {
+  border: 1px solid #d0d7de;
+  padding: 0.45em 0.65em;
+  vertical-align: top;
+}
+
+.report-prose thead th {
+  background: #f6f8fa;
+  font-weight: 600;
+}
+
+.report-prose thead {
+  display: table-header-group;
+}
+
+.report-prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.report-prose pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.mermaid svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.report-prose blockquote {
+  font-style: normal;
+  quotes: none;
+}
+
+.report-prose blockquote p:first-of-type::before,
+.report-prose blockquote p:first-of-type::after {
+  content: none;
+}
+
+/* Tailwind Typography wraps inline code in literal backticks. */
+.report-prose :not(pre) > code::before,
+.report-prose :not(pre) > code::after {
+  content: none;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .report-page {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .report-prose {
+    max-width: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  table,
+  pre,
+  blockquote,
+  figure,
+  img,
+  tr {
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

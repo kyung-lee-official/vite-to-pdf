@@ -1,24 +1,47 @@
 {
   "name": "md-to-pdf",
-  "version": "1.0.0",
-  "description": "Recursively convert Markdown files in doc/ to PDFs in build/",
+  "version": "2.0.0",
+  "description": "Markdown/MDX report workspace with Vite, React, Tailwind and Playwright PDF export",
+  "private": true,
   "type": "module",
-  "main": "./src/index.js",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "build": "node ./src/index.js",
-    "pdf:install": "playwright install chromium",
-    "postinstall": "playwright install chromium"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "pdf": "vite build && bun scripts/export-pdf.ts",
+    "typecheck": "tsc --noEmit",
+    "pdf:install": "playwright install chromium"
   },
   "author": "Kyung Lee",
   "license": "ISC",
   "dependencies": {
-    "@mdit/plugin-katex": "^1.1.5",
     "gray-matter": "^4.0.3",
     "katex": "^0.19.1",
-    "markdown-it": "^15.0.3",
-    "playwright": "^1.65.0"
+    "mermaid": "^12.3.0",
+    "playwright": "^1.65.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "^3.11.1",
+    "sirv": "^3.0.2"
+  },
+  "devDependencies": {
+    "@mdx-js/rollup": "^3.1.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^26.6.10",
+    "@types/react": "^19.3.2",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "rehype-katex": "^7.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-mdx-frontmatter": "^6.0.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
   }
 }
