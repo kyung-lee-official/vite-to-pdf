@@ -23,6 +23,53 @@ This page is a tracked example of the report components. Add content under `doc/
     Sign-off         :milestone, actual-done, 2026-11-26, 0d
 `} />
 
+## Timeline
+
+<TimelineChart
+  title="Example delivery timeline"
+  start="2026-11-11"
+  end="2026-11-26"
+  rows={[
+    {
+      label: "Plan",
+      bars: [
+        {
+          start: "2026-11-11",
+          end: "2026-11-16",
+          label: "Build",
+          color: "#bfdbfe",
+          strokeColor: "#60a5fa",
+          textColor: "#1e3a8a",
+        },
+      ],
+    },
+    {
+      label: "Actual",
+      bars: [
+        {
+          start: "2026-11-11",
+          end: "2026-11-23",
+          label: "Build and deploy",
+          color: "#2563eb",
+        },
+        {
+          start: "2026-11-24",
+          end: "2026-11-25",
+          label: "Rework / v2",
+          color: "#f59e0b",
+        },
+      ],
+    },
+  ]}
+  milestones={[
+    { date: "2026-11-11", label: "Kickoff" },
+    { date: "2026-11-16", label: "Planned" },
+    { date: "2026-11-26", label: "Sign-off", color: "#16a34a" },
+  ]}
+  delay={{ start: "2026-11-17", end: "2026-11-26", label: "Delay" }}
+  caption="Figure: plan vs actual."
+/>
+
 ## Bar chart
 
 <BarChart
