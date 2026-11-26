@@ -24,6 +24,11 @@ body {
   /* prose utilities are applied on the element; this class carries print and table overrides. */
 }
 
+/* Slightly denser body text for reports. */
+.report-prose.prose {
+  font-size: 0.95rem;
+}
+
 .report-prose table {
   width: 100%;
   border-collapse: collapse;
@@ -100,7 +105,6 @@ body {
     break-after: avoid;
   }
 
-  table,
   pre,
   blockquote,
   figure,
